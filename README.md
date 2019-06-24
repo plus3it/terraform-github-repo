@@ -8,15 +8,16 @@ Note: this will only create an organizational repository
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| access\_teams | List of organizational teams who can access the repository | list | `<list>` | no |
+| access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}]) | list | `<list>` | no |
 | description | Description for the repository being created | string | `"A Terraform Module"` | no |
-| enable\_auto\_init | Automatically initialize the repository upon creation | string | `"true"` | no |
-| enable\_issues | Enable the GitHub Issues features on the repository | string | `"true"` | no |
-| enable\_merge\_commits | Whether or not to allow merge commits | string | `"true"` | no |
-| enable\_rebase\_merging | Whether or not to allow rebase merging | string | `"true"` | no |
-| enable\_squash\_merging | Whether or not to allow squash merging | string | `"true"` | no |
+| enable\_auto\_init | Automatically initialize the repository upon creation | string | `"false"` | no |
+| enable\_issues | Enable the GitHub Issues features on the repository | string | `"false"` | no |
+| enable\_merge\_commits | Whether or not to allow merge commits | string | `"false"` | no |
+| enable\_projects | Enable the GitHub Projects features on the repository | string | `"false"` | no |
+| enable\_rebase\_merging | Whether or not to allow rebase merging | string | `"false"` | no |
+| enable\_squash\_merging | Whether or not to allow squash merging | string | `"false"` | no |
 | enable\_strict\_checks | Require branches to be up to date before merging. | string | `"false"` | no |
-| enforce\_admins | Enforces status checks on repository administrators | string | `"true"` | no |
+| enforce\_admins | Enforces status checks on repository administrators | string | `"false"` | no |
 | enforce\_code\_owner\_review | Require an approved review in pull requests including files with a designated code owner | string | `"false"` | no |
 | gitignore\_template | Gitignore template to include in the repository | string | `""` | no |
 | homepage\_url | URL of a page describing the project. | string | `""` | no |

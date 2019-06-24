@@ -12,7 +12,7 @@ resource "github_repository" "this" {
   license_template   = "${var.license_template}"
   topics             = "${var.topics}"
   gitignore_template = "${var.gitignore_template}"
-  has_projects       = "true"
+  has_projects       = "${var.enable_projects}"
 }
 
 resource "github_branch_protection" "this" {
@@ -28,12 +28,12 @@ resource "github_branch_protection" "this" {
   # Restrict who can dismiss pull requests
   required_pull_request_reviews {
     require_code_owner_reviews = "${var.enforce_code_owner_review}"
-    dismissal_teams            = ["${data.github_team.restricted_pr_teams.*.name}"]
+    dismissal_teams            = "${var.restricted_pr_teams}"
   }
 
   # Restrict who can push to the branch
   restrictions {
-    teams = ["${data.github_team.restricted_push_teams.*.name}"]
+    teams = "${var.restricted_push_teams}"
   }
 }
 
@@ -43,24 +43,12 @@ resource "github_team_repository" "this" {
 
   team_id    = "${data.github_team.access_teams.*.id[count.index]}"
   repository = "${github_repository.this.name}"
-  permission = "pull"
+  permission = "${lookup(var.access_teams[count.index], "permission")}"
 }
 
 # Get information about teams that already exist within the organization
 data "github_team" "access_teams" {
   count = "${length(var.access_teams)}"
 
-  slug = "${element(var.access_teams, count.index)}"
-}
-
-data "github_team" "restricted_pr_teams" {
-  count = "${length(var.restricted_pr_teams)}"
-
-  slug = "${element(var.restricted_pr_teams, count.index)}"
-}
-
-data "github_team" "restricted_push_teams" {
-  count = "${length(var.restricted_push_teams)}"
-
-  slug = "${element(var.restricted_push_teams, count.index)}"
+  slug = "${lookup(var.access_teams[count.index], "name")}"
 }

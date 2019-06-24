@@ -30,7 +30,7 @@ variable "enable_strict_checks" {
 variable "enforce_admins" {
   description = "Enforces status checks on repository administrators"
   type        = "string"
-  default     = "true"
+  default     = "false"
 }
 
 variable "enforce_code_owner_review" {
@@ -48,31 +48,37 @@ variable "required_status_checks" {
 variable "enable_issues" {
   description = "Enable the GitHub Issues features on the repository"
   type        = "string"
-  default     = "true"
+  default     = "false"
+}
+
+variable "enable_projects" {
+  description = "Enable the GitHub Projects features on the repository"
+  type        = "string"
+  default     = "false"
 }
 
 variable "enable_merge_commits" {
   description = "Whether or not to allow merge commits"
   type        = "string"
-  default     = "true"
+  default     = "false"
 }
 
 variable "enable_squash_merging" {
   description = "Whether or not to allow squash merging"
   type        = "string"
-  default     = "true"
+  default     = "false"
 }
 
 variable "enable_rebase_merging" {
   description = "Whether or not to allow rebase merging"
   type        = "string"
-  default     = "true"
+  default     = "false"
 }
 
 variable "enable_auto_init" {
   description = "Automatically initialize the repository upon creation"
   type        = "string"
-  default     = "true"
+  default     = "false"
 }
 
 variable "license_template" {
@@ -94,7 +100,7 @@ variable "gitignore_template" {
 }
 
 variable "access_teams" {
-  description = "List of organizational teams who can access the repository"
+  description = "List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}])"
   type        = "list"
   default     = []
 }
