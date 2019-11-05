@@ -105,9 +105,6 @@ tfdocs-awk/install: ARCHIVE := https://github.com/plus3it/tfdocs-awk/archive/0.0
 tfdocs-awk/install:
 	$(CURL) $(ARCHIVE) | tar -C $(BIN_DIR) --strip-components=1 --wildcards '*.sh' --wildcards '*.awk' -xzvf -
 
-docs/%: README_PARTS := _docs/MAIN.md <(echo) <($(BIN_DIR)/terraform-docs.sh markdown table .)
-docs/%: README_FILE ?= README.md
-
 docs/lint: | tfdocs-awk/install guard/program/terraform-docs
 	@ echo "[$@] Linting documentation files.."
 	@ bash -eu -o pipefail autodocs.sh -l
