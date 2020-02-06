@@ -7,3 +7,10 @@
 
 # .tfvars files
 *.tfvars
+
+# tardigrade-ci
+.tardigrade-ci
+tardigrade-ci/
+
+# eclint
+.git/
