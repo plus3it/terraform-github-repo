@@ -4,30 +4,37 @@ A terraform module to create an organization repository and
 configure team access as well as branch protections.
 Note: this will only create an organizational repository
 
+<!-- BEGIN TFDOCS -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| github | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` \(e.g., \[\{name = test, permission = pull\}\]\) | list | `<list>` | no |
-| description | Description for the repository being created | string | `"A Terraform Module"` | no |
-| enable\_auto\_init | Automatically initialize the repository upon creation | bool | `"false"` | no |
-| enable\_issues | Enable the GitHub Issues features on the repository | bool | `"false"` | no |
-| enable\_merge\_commits | Whether or not to allow merge commits | bool | `"false"` | no |
-| enable\_projects | Enable the GitHub Projects features on the repository | bool | `"false"` | no |
-| enable\_rebase\_merging | Whether or not to allow rebase merging | bool | `"false"` | no |
-| enable\_squash\_merging | Whether or not to allow squash merging | bool | `"false"` | no |
-| enable\_strict\_checks | Require branches to be up to date before merging. | bool | `"false"` | no |
-| enforce\_admins | Enforces status checks on repository administrators | bool | `"false"` | no |
-| enforce\_code\_owner\_review | Require an approved review in pull requests including files with a designated code owner | bool | `"false"` | no |
-| gitignore\_template | Gitignore template to include in the repository | string | `"null"` | no |
-| homepage\_url | URL of a page describing the project. | string | `"null"` | no |
-| license\_template | Type of license to include in the repository | string | `"apache-2.0"` | no |
-| name | The name of the repostory to create | string | `"null"` | no |
-| protected\_branch | The branch to protect | string | `"master"` | no |
-| required\_status\_checks | The list of status checks to require in order to merge into this branch. | list(string) | `<list>` | no |
-| restricted\_pr\_teams | List of organizational teams who can dismiss a pull request | list(string) | `<list>` | no |
-| restricted\_push\_teams | List of organizational teams who can push to the branch | list(string) | `<list>` | no |
-| topics | List of topics to apply to the repository | list(string) | `<list>` | no |
+|------|-------------|------|---------|:-----:|
+| gitignore\_template | Gitignore template to include in the repository | `string` | n/a | yes |
+| homepage\_url | URL of a page describing the project. | `string` | n/a | yes |
+| name | The name of the repostory to create | `string` | n/a | yes |
+| access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}]) | `list` | `[]` | no |
+| description | Description for the repository being created | `string` | `"A Terraform Module"` | no |
+| enable\_auto\_init | Automatically initialize the repository upon creation | `bool` | `false` | no |
+| enable\_issues | Enable the GitHub Issues features on the repository | `bool` | `false` | no |
+| enable\_merge\_commits | Whether or not to allow merge commits | `bool` | `false` | no |
+| enable\_projects | Enable the GitHub Projects features on the repository | `bool` | `false` | no |
+| enable\_rebase\_merging | Whether or not to allow rebase merging | `bool` | `false` | no |
+| enable\_squash\_merging | Whether or not to allow squash merging | `bool` | `false` | no |
+| enable\_strict\_checks | Require branches to be up to date before merging. | `bool` | `false` | no |
+| enforce\_admins | Enforces status checks on repository administrators | `bool` | `false` | no |
+| enforce\_code\_owner\_review | Require an approved review in pull requests including files with a designated code owner | `bool` | `false` | no |
+| license\_template | Type of license to include in the repository | `string` | `"apache-2.0"` | no |
+| protected\_branch | The branch to protect | `string` | `"master"` | no |
+| required\_status\_checks | The list of status checks to require in order to merge into this branch. | `list(string)` | `[]` | no |
+| restricted\_pr\_teams | List of organizational teams who can dismiss a pull request | `list(string)` | `[]` | no |
+| restricted\_push\_teams | List of organizational teams who can push to the branch | `list(string)` | `[]` | no |
+| topics | List of topics to apply to the repository | `list(string)` | `[]` | no |
 
 ## Outputs
 
@@ -38,3 +45,4 @@ Note: this will only create an organizational repository
 | repo\_url | URL to the repository on the web |
 | ssh\_git\_clone | URL that can be provided to `git clone` to clone the repository via SSH |
 
+<!-- END TFDOCS -->
