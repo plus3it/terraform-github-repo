@@ -5,6 +5,12 @@ configure team access as well as branch protections.
 Note: this will only create an organizational repository
 
 <!-- BEGIN TFDOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+
 ## Providers
 
 | Name | Version |
@@ -14,10 +20,7 @@ Note: this will only create an organizational repository
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| gitignore\_template | Gitignore template to include in the repository | `string` | n/a | yes |
-| homepage\_url | URL of a page describing the project. | `string` | n/a | yes |
-| name | The name of the repostory to create | `string` | n/a | yes |
+|------|-------------|------|---------|:--------:|
 | access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}]) | `list` | `[]` | no |
 | description | Description for the repository being created | `string` | `"A Terraform Module"` | no |
 | enable\_auto\_init | Automatically initialize the repository upon creation | `bool` | `false` | no |
@@ -29,7 +32,10 @@ Note: this will only create an organizational repository
 | enable\_strict\_checks | Require branches to be up to date before merging. | `bool` | `false` | no |
 | enforce\_admins | Enforces status checks on repository administrators | `bool` | `false` | no |
 | enforce\_code\_owner\_review | Require an approved review in pull requests including files with a designated code owner | `bool` | `false` | no |
+| gitignore\_template | Gitignore template to include in the repository | `string` | `null` | no |
+| homepage\_url | URL of a page describing the project. | `string` | `null` | no |
 | license\_template | Type of license to include in the repository | `string` | `"apache-2.0"` | no |
+| name | The name of the repostory to create | `string` | `null` | no |
 | protected\_branch | The branch to protect | `string` | `"master"` | no |
 | required\_status\_checks | The list of status checks to require in order to merge into this branch. | `list(string)` | `[]` | no |
 | restricted\_pr\_teams | List of organizational teams who can dismiss a pull request | `list(string)` | `[]` | no |
