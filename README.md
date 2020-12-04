@@ -21,7 +21,7 @@ Note: this will only create an organizational repository
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}]) | `list` | `[]` | no |
+| access\_teams | List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}]) | `list(any)` | `[]` | no |
 | description | Description for the repository being created | `string` | `"A Terraform Module"` | no |
 | enable\_auto\_init | Automatically initialize the repository upon creation | `bool` | `false` | no |
 | enable\_issues | Enable the GitHub Issues features on the repository | `bool` | `false` | no |

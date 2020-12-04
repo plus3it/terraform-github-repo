@@ -102,7 +102,7 @@ variable "gitignore_template" {
 
 variable "access_teams" {
   description = "List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}])"
-  type        = list
+  type        = list(any)
   default     = []
 }
 
