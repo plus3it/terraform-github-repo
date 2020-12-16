@@ -8,12 +8,12 @@ output "repo_url" {
   value       = github_repository.this.html_url
 }
 
-output "http_git_clone" {
+output "http_clone_url" {
   description = "URL that can be provided to `git clone` to clone the repository via HTTPS."
   value       = github_repository.this.http_clone_url
 }
 
-output "ssh_git_clone" {
+output "ssh_clone_url" {
   description = "URL that can be provided to `git clone` to clone the repository via SSH"
   value       = github_repository.this.ssh_clone_url
 }
