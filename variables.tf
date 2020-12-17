@@ -117,19 +117,19 @@ variable "template" {
 variable "branch_protection" {
   description = "Branch protection configuration"
   type = object({
-    enforce_admins         = bool
-    push_restrictions      = list(string)
-    require_signed_commits = bool
-    required_status_checks = object({
-      strict   = bool
+    enforce_admins         = optional(bool)
+    push_restrictions      = optional(list(string))
+    require_signed_commits = optional(bool)
+    required_status_checks = optional(object({
+      strict   = optional(bool)
       contexts = list(string)
-    })
-    required_pull_request_reviews = object({
-      dismiss_stale_reviews           = bool
-      dismissal_restrictions          = list(string)
-      require_code_owner_reviews      = bool
+    }))
+    required_pull_request_reviews = optional(object({
+      dismiss_stale_reviews           = optional(bool)
+      dismissal_restrictions          = optional(list(string))
+      require_code_owner_reviews      = optional(bool)
       required_approving_review_count = number
-    })
+    }))
   })
   default = null
 }
@@ -138,7 +138,7 @@ variable "teams" {
   description = "List of teams to grant permissions to the repository"
   type = list(object({
     name       = string
-    permission = string
+    permission = optional(string)
   }))
   default = []
 }
