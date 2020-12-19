@@ -48,9 +48,6 @@ Note: this will only create an organizational repository
 
 | Name | Description |
 |------|-------------|
-| http\_clone\_url | URL that can be provided to `git clone` to clone the repository via HTTPS. |
-| repo\_name | The repository name in the form of `<organization>/<repository>` |
-| repo\_url | URL to the repository on the web |
-| ssh\_clone\_url | URL that can be provided to `git clone` to clone the repository via SSH |
+| repo | Object with all repo attributes |
 
 <!-- END TFDOCS -->
