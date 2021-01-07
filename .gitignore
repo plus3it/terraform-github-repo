@@ -8,9 +8,15 @@
 # .tfvars files
 *.tfvars
 
+# terraform lockfile
+.terraform.lock.hcl
+
 # tardigrade-ci
 .tardigrade-ci
 tardigrade-ci/
 
 # eclint
 .git/
+
+# terratest packaging
+tests/go.*

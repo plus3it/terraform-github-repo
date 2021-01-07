@@ -1,97 +1,48 @@
 variable "name" {
-  description = "The name of the repostory to create"
+  description = "Name of the repository"
   type        = string
-  default     = null
-}
-
-variable "homepage_url" {
-  description = "URL of a page describing the project."
-  type        = string
-  default     = null
 }
 
 variable "description" {
-  description = "Description for the repository being created"
+  description = "Description of the repository"
   type        = string
-  default     = "A Terraform Module"
+  default     = null
 }
 
-variable "protected_branch" {
-  description = "The branch to protect"
-  type        = string
-  default     = "master"
-}
-
-variable "enable_strict_checks" {
-  description = "Require branches to be up to date before merging."
+variable "allow_merge_commit" {
+  description = "Whether to allow merge commits"
   type        = bool
   default     = false
 }
 
-variable "enforce_admins" {
-  description = "Enforces status checks on repository administrators"
+variable "allow_squash_merge" {
+  description = "Whether to allow squash merging"
   type        = bool
   default     = false
 }
 
-variable "enforce_code_owner_review" {
-  description = "Require an approved review in pull requests including files with a designated code owner"
+variable "allow_rebase_merge" {
+  description = "Whether to allow rebase merging"
+  type        = bool
+  default     = true
+}
+
+variable "archive_on_destroy" {
+  description = "Whether to archive on destroy instead of delete"
   type        = bool
   default     = false
 }
 
-variable "required_status_checks" {
-  description = "The list of status checks to require in order to merge into this branch."
-  type        = list(string)
-  default     = []
-}
-
-variable "enable_issues" {
-  description = "Enable the GitHub Issues features on the repository"
-  type        = bool
-  default     = false
-}
-
-variable "enable_projects" {
-  description = "Enable the GitHub Projects features on the repository"
-  type        = bool
-  default     = false
-}
-
-variable "enable_merge_commits" {
-  description = "Whether or not to allow merge commits"
-  type        = bool
-  default     = false
-}
-
-variable "enable_squash_merging" {
-  description = "Whether or not to allow squash merging"
-  type        = bool
-  default     = false
-}
-
-variable "enable_rebase_merging" {
-  description = "Whether or not to allow rebase merging"
-  type        = bool
-  default     = false
-}
-
-variable "enable_auto_init" {
+variable "auto_init" {
   description = "Automatically initialize the repository upon creation"
   type        = bool
-  default     = false
+  default     = true
 }
 
-variable "license_template" {
-  description = "Type of license to include in the repository"
-  type        = string
-  default     = "apache-2.0"
-}
-
-variable "topics" {
-  description = "List of topics to apply to the repository"
-  type        = list(string)
-  default     = []
+variable "delete_branch_on_merge" {
+  description = "Automatically delete head branch after a pull request is merged"
+  type        = bool
+  default     = true
 }
 
 variable "gitignore_template" {
@@ -100,21 +51,94 @@ variable "gitignore_template" {
   default     = null
 }
 
-variable "access_teams" {
-  description = "List of maps with the `name` of the team that can access the repository and its `permission` (e.g., [{name = test, permission = pull}])"
-  type        = list(any)
-  default     = []
+variable "has_issues" {
+  description = "Enable the GitHub Issues features on the repository"
+  type        = bool
+  default     = true
 }
 
-variable "restricted_pr_teams" {
-  description = "List of organizational teams who can dismiss a pull request"
+variable "has_projects" {
+  description = "Enable the GitHub Projects features on the repository"
+  type        = bool
+  default     = false
+}
+
+variable "has_wiki" {
+  description = "Enable the GitHub Wiki features on the repository"
+  type        = bool
+  default     = false
+}
+
+variable "homepage_url" {
+  description = "URL of a page describing the project"
+  type        = string
+  default     = null
+}
+
+variable "is_template" {
+  description = "Configure this repository as a template repository"
+  type        = bool
+  default     = false
+}
+
+variable "license_template" {
+  description = "Type of license to include in the repository"
+  type        = string
+  default     = null
+}
+
+variable "topics" {
+  description = "List of topics to apply to the repository"
   type        = list(string)
   default     = []
 }
 
-variable "restricted_push_teams" {
-  description = "List of organizational teams who can push to the branch"
-  type        = list(string)
-  default     = []
+variable "visibility" {
+  description = "Visibility of the repository. One of: `public`, `private`, or `internal`"
+  type        = string
+  default     = "public"
 }
 
+variable "vulnerability_alerts" {
+  description = "Whether to enable security alerts for dependencies"
+  type        = bool
+  default     = true
+}
+
+variable "template" {
+  description = "Template repository used to create this repository"
+  type = object({
+    owner      = string
+    repository = string
+  })
+  default = null
+}
+
+variable "branch_protection" {
+  description = "Branch protection configuration"
+  type = object({
+    enforce_admins         = optional(bool)
+    push_restrictions      = optional(list(string))
+    require_signed_commits = optional(bool)
+    required_status_checks = optional(object({
+      strict   = optional(bool)
+      contexts = list(string)
+    }))
+    required_pull_request_reviews = optional(object({
+      dismiss_stale_reviews           = optional(bool)
+      dismissal_restrictions          = optional(list(string))
+      require_code_owner_reviews      = optional(bool)
+      required_approving_review_count = number
+    }))
+  })
+  default = null
+}
+
+variable "teams" {
+  description = "List of teams to grant permissions to the repository"
+  type = list(object({
+    name       = string
+    permission = optional(string)
+  }))
+  default = []
+}
