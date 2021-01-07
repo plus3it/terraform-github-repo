@@ -107,10 +107,10 @@ variable "vulnerability_alerts" {
 
 variable "template" {
   description = "Template repository used to create this repository"
-  type = list(object({
+  type = object({
     owner      = string
     repository = string
-  }))
+  })
   default = null
 }
 

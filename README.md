@@ -39,7 +39,7 @@ Note: this will only create an organizational repository
 | is\_template | Configure this repository as a template repository | `bool` | `false` | no |
 | license\_template | Type of license to include in the repository | `string` | `null` | no |
 | teams | List of teams to grant permissions to the repository | <pre>list(object({<br>    name       = string<br>    permission = optional(string)<br>  }))</pre> | `[]` | no |
-| template | Template repository used to create this repository | <pre>list(object({<br>    owner      = string<br>    repository = string<br>  }))</pre> | `null` | no |
+| template | Template repository used to create this repository | <pre>object({<br>    owner      = string<br>    repository = string<br>  })</pre> | `null` | no |
 | topics | List of topics to apply to the repository | `list(string)` | `[]` | no |
 | visibility | Visibility of the repository. One of: `public`, `private`, or `internal` | `string` | `"public"` | no |
 | vulnerability\_alerts | Whether to enable security alerts for dependencies | `bool` | `true` | no |
