@@ -5,7 +5,7 @@ terraform {
 
   required_providers {
     github = {
-      source  = "registry.terraform.io/hashicorp/github"
+      source  = "registry.terraform.io/integrations/github"
       version = ">= 4.0"
     }
   }
