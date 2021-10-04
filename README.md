@@ -22,7 +22,6 @@ Note: this will only create an organizational repository
 
 | Name | Type |
 |------|------|
-
 | github_team.teams | data source |
 
 ## Inputs
