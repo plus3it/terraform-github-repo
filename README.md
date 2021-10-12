@@ -10,7 +10,7 @@ At the moment, testing is manual:
 
 ```
 # Replace "xxx" with an actual AWS profile, then execute the integration tests.
-export AWS_PROFILE=xxx 
+export GITHUB_TOKEN=xxx 
 make terraform/pytest PYTEST_ARGS="-v --nomock"
 ```
 
