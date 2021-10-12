@@ -4,6 +4,16 @@ A terraform module to create an organization repository and
 configure team access as well as branch protections.
 Note: this will only create an organizational repository
 
+## Testing
+
+At the moment, testing is manual:
+
+```
+# Replace "xxx" with an actual AWS profile, then execute the integration tests.
+export GITHUB_TOKEN=xxx 
+make terraform/pytest PYTEST_ARGS="-v --nomock"
+```
+
 <!-- BEGIN TFDOCS -->
 ## Requirements
 
