@@ -9,7 +9,7 @@ Note: this will only create an organizational repository
 At the moment, testing is manual:
 
 ```
-# Replace "xxx" with an actual AWS profile, then execute the integration tests.
+# Replace "xxx" with an your github access token, then execute the integration tests.
 export GITHUB_TOKEN=xxx 
 make terraform/pytest PYTEST_ARGS="-v --nomock"
 ```
